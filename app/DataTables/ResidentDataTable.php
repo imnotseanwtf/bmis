@@ -23,11 +23,7 @@ class ResidentDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-            ->editColumn('gender', fn (Resident $resident) => match ($resident->gender) {
-                1 => 'Male',
-                2 => 'Female',
-                default => 'Etc'
-            })
+            ->editColumn('gender', fn (Resident $resident) => $resident->gender)
             ->addColumn('action', fn (Resident $resident) => view('resident.components.action', compact('resident')))
             ->rawColumns(['action']);
     }
