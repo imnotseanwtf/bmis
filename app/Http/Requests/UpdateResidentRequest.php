@@ -11,7 +11,7 @@ class UpdateResidentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateResidentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255'],
+            'birthdate' => ['required', 'date'],
+            'gender' => ['required', 'string'],
+            'contact_information' => ['required', 'string', 'max:255']
         ];
     }
 }
