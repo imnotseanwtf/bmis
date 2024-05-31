@@ -24,7 +24,7 @@ class StoreResidentRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'birthdate' => ['required', 'date'],
-            'gender' => ['required', 'int'],
+            'gender' => ['required', 'string'],
             'contact_information' => ['required', 'string', 'max:255']
         ];
     }

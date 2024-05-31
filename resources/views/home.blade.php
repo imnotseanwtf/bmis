@@ -70,7 +70,7 @@
                 style="border:0"
                 loading="lazy"
                 allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=calamba&output=embed"></iframe>
+                referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=laguna&output=embed"></iframe>
             </div>
         </div>
     </div>
