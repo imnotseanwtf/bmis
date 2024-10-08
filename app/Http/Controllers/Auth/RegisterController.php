@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -49,9 +50,19 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'last_name' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
+            'middle_name' => ['nullable', 'string', 'max:255'],
+            'birthdate' => ['required', 'date'],
+            'gender' => ['required', 'in:Male,Female,Other'], // Adjust the options as needed
+            'contact_number' => ['required', 'string', 'max:15'], // Adjust max length as needed
+            'address' => ['required', 'string', 'max:255'],
+            'barangay' => ['required', 'string', 'max:255'],
+            'municipality' => ['required', 'string', 'max:255'],
+            'province' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'id_pic' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'], // Adjust file types and size as needed
         ]);
     }
 
@@ -63,10 +74,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
+            'last_name' => $data['last_name'],
             'name' => $data['name'],
+            'middle_name' => $data['middle_name'],
+            'birthdate' => $data['birthdate'],
+            'gender' => $data['gender'],
+            'contact_number' => $data['contact_number'],
+            'address' => $data['address'],
+            'barangay' => $data['barangay'],
+            'municipality' => $data['municipality'],
+            'province' => $data['province'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'id_pic' => $data['id_pic']->store('idPicture', 'public'),
         ]);
+
+        $user->assignRole('resident');
+
+        return $user;
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        auth()->logout();
+
+        alert()->success('Wait For the Admin to Review your account.');
+
+        return redirect()->route('login');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 @section('content')
-    <div class="container">
+    <div class="container" style="margin-top: 12%">
         <div class="row justify-content-center">
             <div class="col-12 d-flex align-items-center justify-content-center">
                 <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">

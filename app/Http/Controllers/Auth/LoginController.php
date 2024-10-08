@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -36,5 +38,30 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->status === null || $user->status === '') {
+            auth()->logout();
+
+            throw ValidationException::withMessages([
+               'email' => [trans('Account is not Activate! Please Contact the Admin.')],
+            ]);
+
+            return redirect()->route('login');
+        }
+
+        if ($user->status == false || $user->status == 0) {
+            auth()->logout();
+
+            throw ValidationException::withMessages([
+               'email' => [trans('Account is Rejected! Please Contact the Admin.')],
+            ]);
+
+            return redirect()->route('login');
+        }
+
+        return redirect()->route('home');
     }
 }

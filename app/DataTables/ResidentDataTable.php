@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Resident;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -23,17 +24,27 @@ class ResidentDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-            ->editColumn('gender', fn (Resident $resident) => $resident->gender)
-            ->addColumn('action', fn (Resident $resident) => view('resident.components.action', compact('resident')))
+            ->addColumn('action', fn(User $resident) => view('resident.components.action', compact('resident')))
+            ->addColumn('status', function (User $user) {
+                if ($user->status === true || $user->status === 1) {
+                    return 'Accepted'; // For true or 1
+                } elseif ($user->status === false || $user->status === 0) {
+                    return 'Rejected'; // For false or 0
+                } else {
+                    return 'Deactivate'; // For null
+                }
+            })
             ->rawColumns(['action']);
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Resident $model): QueryBuilder
+    public function query(User $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model
+            ->whereHas('roles', fn($q) => $q
+                ->where('name', 'resident'));
     }
 
     /**
@@ -65,9 +76,9 @@ class ResidentDataTable extends DataTable
     {
         return [
             Column::make('name'),
-            Column::make('birthdate'),
+            Column::make('email'),
             Column::make('gender'),
-            Column::make('contact_information'),
+            Column::make('status'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

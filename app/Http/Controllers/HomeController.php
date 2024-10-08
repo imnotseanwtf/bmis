@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Resident;
-use Illuminate\Http\Request;
+use App\Enums\UserTypeEnum;
+use App\Models\ResidentInformation;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -24,8 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $residentCount = Resident::count();
+        return view('home');
+    }
 
-        return view('home', compact('residentCount'));
+    public function dashboard()
+    {
+        $residentCount = User::role(UserTypeEnum::Resident->value)->count();
+
+        return view('dashboard', compact('residentCount'));
     }
 }

@@ -13,13 +13,25 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('last_name')->nullable();       // Added last_name
+            $table->string('name');      // Added first_name
+            $table->string('middle_name')->nullable(); // Added middle_name (nullable)
+            $table->date('birthdate')->nullable();         // Added birthdate
+            $table->enum('gender', ['Male', 'Female', 'Other'])->nullable(); // Added gender (using enum for demonstration)
+            $table->string('contact_number')->nullable();   // Added contact_number
+            $table->string('address')->nullable();     // Added house_number
+            $table->string('barangay')->nullable();         // Added barangay
+            $table->string('municipality')->nullable();     // Added municipality
+            $table->string('province')->nullable();         // Added province
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('id_pic')->nullable();
+            $table->boolean('status')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
+        
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
