@@ -20,7 +20,7 @@ class RejectResidentController extends Controller
             ]
         );
 
-        alert()->success('Resident Rejected Successfully!');
+        flash()->success('Resident Rejected Successfully!');
 
         return redirect()->route('resident.index');
     }

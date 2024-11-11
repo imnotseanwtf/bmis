@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\House;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -62,7 +63,8 @@ class RegisterController extends Controller
             'province' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'id_pic' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'], // Adjust file types and size as needed
+            'number_of_years' => ['required', 'numeric'],
+            'id_pic' => ['required', 'file', 'mimes:pdf,docx', 'max:2048'], // Adjust file types and size as needed
         ]);
     }
 
@@ -81,26 +83,33 @@ class RegisterController extends Controller
             'birthdate' => $data['birthdate'],
             'gender' => $data['gender'],
             'contact_number' => $data['contact_number'],
-            'address' => $data['address'],
-            'barangay' => $data['barangay'],
-            'municipality' => $data['municipality'],
-            'province' => $data['province'],
             'email' => $data['email'],
+            'number_of_years' => $data['number_of_years'],
             'password' => Hash::make($data['password']),
             'id_pic' => $data['id_pic']->store('idPicture', 'public'),
         ]);
 
         $user->assignRole('resident');
 
+        House::create(
+            [
+                'user_id' => $user->id,
+                'address' => $data['address'],
+                'barangay' => $data['barangay'],
+                'municipality' => $data['municipality'],
+                'province' => $data['province'],
+            ]
+        );
+
         return $user;
     }
 
     protected function registered(Request $request, $user)
     {
-        auth()->logout();
+        if ($user->email_verified_at == null) {
+            flash()->success('Wait For the Admin to Review your account and Verify your Email Address');
 
-        alert()->success('Wait For the Admin to Review your account.');
-
-        return redirect()->route('login');
+            return redirect()->route('home');
+        }
     }
 }

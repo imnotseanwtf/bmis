@@ -23,15 +23,15 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" name="description" placeholder="Enter description" required>{{ old('description') }}</textarea>
-                        @error('description')
+                    <div class="form-group mt-3">
+                        <label for="file">File</label>
+                        <input class="form-control" name="file" type="file" placeholder="Enter file" required>
+                        @error('file')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label for="date">Date</label>
                         <input type="date" class="form-control" name="date" value="{{ old('date') }}" required>
                         @error('date')

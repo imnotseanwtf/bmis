@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserTypeEnum;
+use App\Models\BlotterRecord;
+use App\Models\RequestDocument;
 use App\Models\ResidentInformation;
 use App\Models\User;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -25,13 +28,59 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $requestDocuments = RequestDocument::all();
+
+        foreach ($requestDocuments as $document) {
+            // Check if is_announce is 1
+            if ($document->is_announce == 1) {
+                flash()->success('Document ' . $document->document_name . ' successfully.');
+                $document->is_announce = 2;
+            }
+            // Check if is_announce is 0
+            elseif ($document->is_announce == 3) {
+                flash()->error('Document' . $document->document_name . ' is Rejected.');
+                $document->is_announce = 5;
+            }
+            // Check if is_announce is 2
+            elseif ($document->is_announce == 2) {
+                flash()->warning('Document ' . $document->document_name . ' valid until ' . $document->valid_until);
+            }
+
+            // Check if status is 2 and valid_until date is beyond current date
+            if ($document->status == 2 && Carbon::parse($document->valid_until)->isPast()) {
+                flash()->error('Document' . $document->document_name . 'validity has expired.');
+                $document->is_announce = 5;
+            }
+
+            $document->save();
+        }
+
         return view('home');
     }
 
     public function dashboard()
     {
-        $residentCount = User::role(UserTypeEnum::Resident->value)->count();
+        $role = UserTypeEnum::Resident->value;
 
-        return view('dashboard', compact('residentCount'));
+        $residentCount = User::role($role)->where('status', true)->count();
+        $pendingResidentCount = User::role($role)->where('status', null)->count();
+
+        $maleCount = User::role($role)
+        ->where('status', true)
+        ->where('gender', 'male')->count();
+        $femaleCount = User::role($role)
+        ->where('status', true)
+        ->where('gender', 'female')->count();
+        $otherGenderCount = User::role($role)
+        ->where('status', true)
+        ->where('gender', 'others')->count();
+
+        $pendingDocument = RequestDocument::where('status', null)->count();
+        $blotterRecordCount = BlotterRecord::count();
+
+        $appointmentPendingCount = RequestDocument::where('status', null)->count();
+
+
+        return view('dashboard', compact('residentCount', 'maleCount', 'femaleCount', 'otherGenderCount', 'appointmentPendingCount', 'pendingResidentCount', 'pendingDocument', 'blotterRecordCount'));
     }
 }

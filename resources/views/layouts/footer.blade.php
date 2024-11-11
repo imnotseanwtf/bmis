@@ -1,26 +1,104 @@
-<footer class="bg-white rounded shadow p-5 mb-4 mt-4">
-    <div class="row">
-        <div class="col-12 col-md-4 col-xl-6 mb-4 mb-md-0">
-            <p class="mb-0 text-center text-lg-start">© 2019-<span class="current-year"></span> <a
-                    class="text-primary fw-normal" href="https://themesberg.com" target="_blank">Themesberg &
-                </a><a href="https://updivision.com/" target="_blank">Updivision</a></p>
-        </div>
-        <div class="col-12 col-md-8 col-xl-6 text-center text-lg-start">
-            <!-- List -->
-            <ul class="list-inline list-group-flush list-group-borderless text-md-end mb-0">
-                <li class="list-inline-item px-0 px-sm-2">
-                    <a href="https://themesberg.com/about">About</a>
-                </li>
-                <li class="list-inline-item px-0 px-sm-2">
-                    <a href="https://themesberg.com/themes">Themes</a>
-                </li>
-                <li class="list-inline-item px-0 px-sm-2">
-                    <a href="https://themesberg.com/blog">Blog</a>
-                </li>
-                <li class="list-inline-item px-0 px-sm-2">
-                    <a href="https://themesberg.com/contact">Contact</a>
-                </li>
-            </ul>
-        </div>
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+
+    <div class="container p-4 pb-0">
+        <!-- Section: Form -->
+        <section class="">
+            <form action="{{ route('feedback.store') }}" method="POST">
+                @csrf
+                <!--Grid row-->
+                <div class="row d-flex justify-content-center">
+                    <!--Grid column-->
+                    <div class="col-auto">
+                        <p class="pt-2">
+                            <strong>Send Us Feedback!</strong>
+                        </p>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-5 col-12">
+                        <!-- Email input -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <textarea type="email" id="form5Example26" class="form-control" name="description" /></textarea>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-auto">
+                        <!-- Submit button -->
+                        <button data-mdb-ripple-init type="submit" class="btn btn-primary mb-4">
+                            Send
+                        </button>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </form>
+        </section>
+        <!-- Section: Form -->
     </div>
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+        <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <!-- Content -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Baranggay Kay-Anlog
+                    </h6>
+                    <p>
+                        Here you can use rows and columns to organize your footer content. Lorem ipsum
+                        dolor sit amet, consectetur adipisicing elit.
+                    </p>
+                </div>
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                    <p><i class="fas fa-home me-3"></i> Brgy. Kay-Anlog Calamba Laguna</p>
+                    <p>
+                        <i class="fas fa-envelope me-3"></i>
+                        info@example.com
+                    </p>
+                    <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                    <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Baranggay Kay-Anlog Management Information
+            System</a>
+    </div>
+    <!-- Copyright -->
 </footer>
+<!-- Footer -->

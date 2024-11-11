@@ -30,6 +30,14 @@
                                     class="btn btn-gray-800">{{ __('Resend Verification Email') }}</button>
                             </div>
                         </form>
+
+                        <a class="btn btn-danger mx-3" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                            <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                                @csrf
+                            </form>
+                            {{ __('Log Out') }}
+                        </a>
                     </div>
                 </div>
             </div>

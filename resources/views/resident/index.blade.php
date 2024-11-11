@@ -46,7 +46,23 @@
                             $('#view_municipality').val(resident.municipality);
                             $('#view_province').val(resident.province);
                             $('#view_email').val(resident.email);
-                            $('#view_id_pic').attr('src', 'storage/' + resident.id_pic);
+                            $('#view_number_of_years').val(resident.number_of_years);
+
+                            function setLinkOrMessage(fileKey, linkId, inputId) {
+                                const fileName = resident[fileKey];
+                                if (fileName) {
+                                    $(`#${linkId}`).attr('href', '/storage/' + fileName).show();
+                                    $(`#${inputId}`).val(fileName);
+                                    $(`#${inputId}`).show();
+                                } else {
+                                    $(`#${linkId}`).hide();
+                                    $(`#${inputId}`).val('No file').show();
+                                }
+                            }
+
+                            setLinkOrMessage('id_pic',
+                                'list_id_pic',
+                                'view_id_pic');
 
                             const mapUrl = 'https://maps.google.com/maps?q=' +
                                 encodeURIComponent(resident.address + ' ' +
@@ -57,7 +73,7 @@
 
                             $('#map').attr('src', mapUrl);
 
-                           
+
 
                             console.log(mapUrl);
 

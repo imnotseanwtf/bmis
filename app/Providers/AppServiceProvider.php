@@ -33,5 +33,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('resident', function () {
             return auth()->user()->isResident();
         });
+
+        Blade::if('imbestigador', function () {
+            return auth()->user()->isImbestigador();
+        });
     }
 }

@@ -26,9 +26,13 @@ class BlotterRecordController extends Controller
      */
     public function store(StoreBlotterRequest $storeBlotterRequest): RedirectResponse
     {
-        BlotterRecord::create($storeBlotterRequest->validated());
+        BlotterRecord::create($storeBlotterRequest->except('file')
+            +
+            [
+                'file' => $storeBlotterRequest->file('file')->store('blotterFiles', 'public')
+            ]);
 
-        alert()->success('Blotter Recorded Sucessfully!');
+            flash()->success('Blotter Recorded Sucessfully!');
 
         return redirect()->route('blotter.index');
     }
@@ -46,9 +50,15 @@ class BlotterRecordController extends Controller
      */
     public function update(UpdateBlotterRequest $updateBlotterRequest, BlotterRecord $blotterRecord): RedirectResponse
     {
-        $blotterRecord->update($updateBlotterRequest->validated());
+        $data = $updateBlotterRequest->except('file');
 
-        alert()->success('Blotter Updated Successfully!');
+        if ($updateBlotterRequest->hasFile('file')) {
+            $data['file'] = $updateBlotterRequest->file('file')->store('blotterFiles', 'public'); // Adjust storage path as needed
+        }
+
+        $blotterRecord->update($data);
+
+        flash()->success('Blotter Updated Successfully!');
 
         return redirect()->route('blotter.index');
     }
@@ -60,7 +70,7 @@ class BlotterRecordController extends Controller
     {
         $blotter->delete();
 
-        alert()->success('Blotter Deleted Successfully!');
+        flash()->success('Blotter Deleted Successfully!');
 
         return redirect()->route('blotter.index');
     }

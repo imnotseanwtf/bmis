@@ -17,10 +17,11 @@ class RejectRequestDocumentController extends Controller
         $requestDocument->update(
             [
                 'status' => false,
-            ]
+                'is_announce' => 3
+             ]
         );
 
-        alert()->success('Request Document Rejected Successfully!');
+        flash()->success('Request Document Rejected Successfully!');
 
         return redirect()->route('request-document.index');
     }

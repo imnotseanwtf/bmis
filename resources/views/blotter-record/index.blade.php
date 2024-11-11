@@ -5,9 +5,11 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <div>Blotter Record</div>
-                <button class="btn btn-primary btn-hover" data-bs-target="#createModal" data-bs-toggle="modal">
-                    Create Blotter
-                </button>
+                @admin
+                    <button class="btn btn-primary btn-hover" data-bs-target="#createModal" data-bs-toggle="modal">
+                        Create Blotter
+                    </button>
+                @endadmin
             </div>
             <div class="card card-body border-0 shadow table-wrapper table-responsive">
                 {{ $dataTable->table() }}
@@ -43,8 +45,23 @@
                         .then(response => response.json())
                         .then(blotter => {
                             $('#view_title').val(blotter.title);
-                            $('#view_description').val(blotter.description);
-                            $('#view_date').val(blotter.date); // Format as necessary
+                            $('#view_date').val(blotter.date);
+
+                            function setLinkOrMessage(fileKey, linkId, inputId) {
+                                const fileName = blotter[fileKey];
+                                if (fileName) {
+                                    $(`#${linkId}`).attr('href', '/storage/' + fileName).show();
+                                    $(`#${inputId}`).val(fileName);
+                                    $(`#${inputId}`).show();
+                                } else {
+                                    $(`#${linkId}`).hide();
+                                    $(`#${inputId}`).val('No file').show();
+                                }
+                            }
+
+                            setLinkOrMessage('file',
+                                'link_file',
+                                'view_file');
                         });
                 });
 

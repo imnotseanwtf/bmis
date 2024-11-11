@@ -42,11 +42,15 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        if ($user->email_verified_at == null) {
+            return redirect()->route('home');
+        }
+
         if ($user->status === null || $user->status === '') {
             auth()->logout();
 
             throw ValidationException::withMessages([
-               'email' => [trans('Account is not Activate! Please Contact the Admin.')],
+                'email' => [trans('Account is not Activate! Please Contact the Admin.')],
             ]);
 
             return redirect()->route('login');
@@ -56,10 +60,18 @@ class LoginController extends Controller
             auth()->logout();
 
             throw ValidationException::withMessages([
-               'email' => [trans('Account is Rejected! Please Contact the Admin.')],
+                'email' => [trans('Account is Rejected! Please Contact the Admin.')],
             ]);
 
             return redirect()->route('login');
+        }
+
+        if ($user->isAdmin()) {
+            return redirect()->route('dashboard');
+        }
+
+        if ($user->isImbestigador()) {
+            return redirect()->route('blotter.index');
         }
 
         return redirect()->route('home');

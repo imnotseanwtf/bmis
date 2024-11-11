@@ -23,7 +23,7 @@ class StoreBlotterRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:1000'],
+            'file' => ['required', 'file', 'mimes:pdf,docx', 'max:2048'],
             'date' => ['required', 'date'],
         ];
     }

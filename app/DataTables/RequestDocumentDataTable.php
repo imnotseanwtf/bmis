@@ -28,13 +28,16 @@ class RequestDocumentDataTable extends DataTable
             ->editColumn('status', function (RequestDocument $requestDocument) {
                 if (is_null($requestDocument->status)) {
                     return 'Pending';
-                } elseif ($requestDocument->status == false) {
+                } elseif ($requestDocument->status == 0) {
                     return 'Rejected';
-                } elseif ($requestDocument->status == true) {
+                } elseif ($requestDocument->status == 1) {
                     return 'Accepted';
+                } elseif ($requestDocument->status == 3) {
+                    return 'Expired';
                 }
             })
             ->editColumn('schedule', fn(RequestDocument $requestDocument) => $requestDocument->schedule ?? 'No Action Yet')
+            ->editColumn('valid_until', fn(RequestDocument $requestDocument) => $requestDocument->valid_until ?? 'No Action Yet')
             ->rawColumns(['action']);
     }
 
@@ -45,7 +48,8 @@ class RequestDocumentDataTable extends DataTable
     {
         if (auth()->user()->isAdmin()) {
             return $model->newQuery()
-                ->with('user');
+                ->with('user')
+                ->select('request_documents.*');
         } else {
             return $model->newQuery()
                 ->where('user_id', auth()->id());
@@ -67,7 +71,6 @@ class RequestDocumentDataTable extends DataTable
             ->buttons([
                 Button::make('excel'),
                 Button::make('csv'),
-                Button::make('pdf'),
                 Button::make('print'),
                 Button::make('reset'),
                 Button::make('reload')
@@ -87,6 +90,7 @@ class RequestDocumentDataTable extends DataTable
 
         $columns[] = Column::make('document_name', 'document_name');
         $columns[] = Column::make('schedule');
+        $columns[] = Column::make('valid_until', 'valid_until');
         $columns[] = Column::make('status');
 
         if (auth()->user()->isAdmin()) {

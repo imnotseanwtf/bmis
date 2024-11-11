@@ -11,7 +11,7 @@ class BlotterRecord extends Model
 
     protected $fillable = [
         'title',
-        'description',
+        'file',
         'date'
     ];
 }

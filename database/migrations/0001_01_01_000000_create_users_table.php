@@ -19,10 +19,7 @@ return new class extends Migration
             $table->date('birthdate')->nullable();         // Added birthdate
             $table->enum('gender', ['Male', 'Female', 'Other'])->nullable(); // Added gender (using enum for demonstration)
             $table->string('contact_number')->nullable();   // Added contact_number
-            $table->string('address')->nullable();     // Added house_number
-            $table->string('barangay')->nullable();         // Added barangay
-            $table->string('municipality')->nullable();     // Added municipality
-            $table->string('province')->nullable();         // Added province
+            $table->integer('number_of_years')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -31,7 +28,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-        
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

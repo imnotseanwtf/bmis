@@ -1,16 +1,24 @@
 {{-- VIEW RESIDENT --}}
 <style>
-     @media (min-width: 992px) { /* For large screens */
+    @media (min-width: 992px) {
+
+        /* For large screens */
         #map {
-            width: 730px; /* Fixed width */
-            height: 400px; /* Fixed height */
+            width: 730px;
+            /* Fixed width */
+            height: 600px;
+            /* Fixed height */
         }
     }
 
-    @media (max-width: 991px) { /* For medium and smaller screens */
+    @media (max-width: 991px) {
+
+        /* For medium and smaller screens */
         #map {
-            width: 100%; /* Full width */
-            height: auto; /* Maintain aspect ratio */
+            width: 100%;
+            /* Full width */
+            height: auto;
+            /* Maintain aspect ratio */
         }
     }
 </style>
@@ -79,15 +87,30 @@
                                     placeholder="{{ __('Email') }}" value="{{ old('email') }}" readonly>
                             </div>
                         </div>
+                        <div class="form-group mt-3">
+                            <label for="view_id_pic">{{ __('ID File') }}</label>
+                            <div class="input-group">
+                                <input name="id_pic" type="text" id="view_id_pic" class="form-control"
+                                    placeholder="{{ __('ID File') }}" readonly>
+                                <a href="#" id="link_id_pic" class="btn btn-link" target="_blank">Download</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="number_of_years">{{ __('Number of Years') }}</label>
+                            <div class="input-group">
+                                <input name="number_of_years" type="text" id="view_number_of_years" @class(['form-control'])
+                                    placeholder="{{ __('Number of Years') }}" value="{{ old('number_of_years') }}" readonly>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-6 col-lg-4"> <!-- Responsive columns -->
                         <div class="form-group">
                             <label for="address">{{ __('Address') }}</label>
                             <div class="input-group">
-                                <input name="address" type="text" id="view_address"
-                                    @class(['form-control']) placeholder="{{ __('Purok Number') }}"
-                                    value="{{ old('address') }}" readonly>
+                                <input name="address" type="text" id="view_address" @class(['form-control'])
+                                    placeholder="{{ __('Purok Number') }}" value="{{ old('address') }}" readonly>
                             </div>
                         </div>
                         <div class="form-group mt-3">
@@ -97,7 +120,20 @@
                                     placeholder="{{ __('Barangay') }}" value="{{ old('barangay') }}" readonly>
                             </div>
                         </div>
+
+
                         <div class="form-group mt-3">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" width="730" height="400"
+                                    style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade" id="map"></iframe>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-lg-4"> <!-- Full width on small screens, partial on larger -->
+                        <div class="form-group">
                             <label for="municipality">{{ __('Municipality') }}</label>
                             <div class="input-group">
                                 <input name="municipality" type="text" id="view_municipality"
@@ -111,23 +147,6 @@
                                 <input name="province" type="text" id="view_province"
                                     @class(['form-control']) placeholder="{{ __('Province') }}"
                                     value="{{ old('province') }}" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" width="730" height="400" style="border:0;" allowfullscreen=""
-                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="map"></iframe>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-12 col-lg-4"> <!-- Full width on small screens, partial on larger -->
-                        <div class="form-group">
-                            <label for="id_pic">{{ __('ID Picture') }}</label>
-                            <div class="input-group">
-                                <img id="view_id_pic" src="{{ old('id_pic') }}" alt="{{ __('ID Picture') }}"
-                                    class="img-fluid" style="width: 350px; height: 300px; object-fit: cover;" />
                             </div>
                         </div>
                     </div>

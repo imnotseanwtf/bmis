@@ -16,8 +16,10 @@ return new class extends Migration
             $table->id();
 
             $table->string('document_name');
-            $table->boolean('status')->nullable();
+            $table->integer('status')->nullable();
             $table->date('schedule')->nullable();
+            $table->date('valid_until')->nullable();
+            $table->integer('is_announce')->nullable();
 
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
 

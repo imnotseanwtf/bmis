@@ -16,7 +16,7 @@
 
                     <div class="form-group">
                         <label for="document_name">Document Type</label>
-                        <select class="form-control" name="document_name" required>
+                        <select class="form-control" name="document_name" id="document_name" required>
                             <option value="" disabled selected>Select document type</option>
                             @foreach (\App\Enums\DocumentTypeEnum::cases() as $documentType)
                                 <option value="{{ $documentType->value }}">{{ $documentType->value }}</option>
@@ -26,6 +26,9 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    
+                    <!-- This is where the modal form will be inserted dynamically -->
+                    <div id="brgy-document"></div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

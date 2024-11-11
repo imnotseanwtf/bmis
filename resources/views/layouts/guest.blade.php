@@ -16,10 +16,18 @@
     @vite('resources/sass/app.scss')
 </head>
 
-<body>
-    @include('sweetalert::alert')
+<body style="position: relative; min-height: 100vh;">
+    @php
+        $minHeight = request()->routeIs('login') ? '100vh' : '140vh';
+    @endphp
+
+    <div
+        style="background-image: url('{{ asset('images/background/kayanlog.jpg') }}'); background-size: 100% 100%; background-position: center; width: 100%; position: absolute; z-index: -1; 
+        min-height: {{ $minHeight }};">
+    </div>
+ 
     <main>
-        <section class="mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <section class="mt-5 mt-lg-0 bg-soft d-flex align-items-center" style="position: relative; z-index: 1;">
             @yield('content')
         </section>
     </main>

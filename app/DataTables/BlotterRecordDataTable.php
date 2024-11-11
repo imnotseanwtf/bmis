@@ -50,7 +50,6 @@ class BlotterRecordDataTable extends DataTable
             ->buttons([
                 Button::make('excel'),
                 Button::make('csv'),
-                Button::make('pdf'),
                 Button::make('print'),
                 Button::make('reset'),
                 Button::make('reload')
@@ -64,7 +63,6 @@ class BlotterRecordDataTable extends DataTable
     {
         return [
             Column::make('title'),
-            Column::make('description'),
             Column::make('date'),
             Column::computed('action')
                 ->exportable(false)

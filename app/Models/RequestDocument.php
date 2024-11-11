@@ -15,6 +15,8 @@ class RequestDocument extends Model
         'document_name',
         'status',
         'schedule',
+        'valid_until',
+        'is_announce'
     ];
 
     public function user(): BelongsTo

@@ -17,13 +17,16 @@
                         placeholder="{{ __('Title') }}" readonly>
                 </div>
 
-                <div class="form-group">
-                    <label for="description">{{ __('Description') }}</label>
-                    <textarea name="description" id="view_description" class="form-control" 
-                        placeholder="{{ __('Description') }}" readonly></textarea>
+                <div class="form-group mt-3">
+                    <label for="view_file">{{ __('File') }}</label>
+                    <div class="input-group">
+                        <input name="file" type="text" class="form-control"
+                            placeholder="{{ __('File') }}" readonly>
+                        <a href="#" id="link_file" class="btn btn-link" target="_blank">Download</a>
+                    </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group mt-3">
                     <label for="date">{{ __('Date') }}</label>
                     <input name="date" type="text" id="view_date" class="form-control" 
                         placeholder="{{ __('Date') }}" readonly>
