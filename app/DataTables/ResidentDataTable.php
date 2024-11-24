@@ -31,7 +31,7 @@ class ResidentDataTable extends DataTable
                 } elseif ($user->status === false || $user->status === 0) {
                     return 'Rejected'; // For false or 0
                 } else {
-                    return 'Deactivate'; // For null
+                    return 'Pending'; // For null
                 }
             })
             ->rawColumns(['action']);

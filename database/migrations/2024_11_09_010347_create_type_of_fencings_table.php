@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('type_of_fencings', function (Blueprint $table) {
             $table->id();
 
-            $table->boolean('indineous');
-            $table->boolean('rc');
-            $table->boolean('rc_and_concrete_hollow_blocks');
-            $table->boolean('rc_and_blocks');
-            $table->boolean('rc_and_interlink_wire');
-            $table->boolean('rc_and_steel_matting');
-            $table->boolean('rc_and_barbed_wire_and_other_wires');
+            $table->boolean('indineous')->default(0);
+            $table->boolean('rc')->default(0);
+            $table->boolean('rc_and_concrete_hollow_blocks')->default(0);
+            $table->boolean('rc_and_blocks')->default(0);
+            $table->boolean('rc_and_interlink_wire')->default(0);
+            $table->boolean('rc_and_steel_matting')->default(0);
+            $table->boolean('rc_and_barbed_wire_and_other_wires')->default(0);
 
             $table->string('others')->nullable();
 

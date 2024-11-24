@@ -5,15 +5,22 @@ namespace App\Http\Controllers;
 use App\DataTables\RequestDocumentDataTable;
 use App\Enums\DocumentTypeEnum;
 use App\Http\Requests\StoreDocumentRequest;
+use App\Models\Address;
 use App\Models\BaranggayCertificate;
 use App\Models\BaranggayClearance;
 use App\Models\BusinessPermit;
 use App\Models\CertificateOfIndigency;
 use App\Models\CertificateOfResidency;
 use App\Models\Complaint;
+use App\Models\DocumentsRequirements;
+use App\Models\Fence;
+use App\Models\FencingPermit;
+use App\Models\Location;
+use App\Models\MeasurementsInMeters;
 use App\Models\MedicalLegalCertificate;
 use App\Models\RequestDocument;
 use App\Models\RequestForBuildingConstruction;
+use App\Models\TypeOfFencing;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -59,13 +66,6 @@ class RequestDocumentController extends Controller
                     'user_id' => $requestDocument->user_id,
                     'request_document_id' => $requestDocument->id,
                 ]);
-        }
-
-        if ($storeDocumentRequest->document_name == DocumentTypeEnum::Barangay_Certificate_of_Residency->value) {
-            CertificateOfResidency::create([
-                'user_id' => $requestDocument->user_id,
-                'request_document_id' => $requestDocument->id,
-            ]);
         }
 
         if ($storeDocumentRequest->document_name == DocumentTypeEnum::Barangay_Indigency_Certificate->value) {
@@ -122,7 +122,51 @@ class RequestDocumentController extends Controller
         }
 
         if ($storeDocumentRequest->document_name == DocumentTypeEnum::Barangay_Fencing_Permit->value) {
-            // Code for Barangay Fencing Permit
+            $location = Location::create($storeDocumentRequest->only('number', 'street', 'barangay'));
+
+            $address = Address::create(
+                [
+                    'number' => $storeDocumentRequest->address_number,
+                    'street' => $storeDocumentRequest->address_street,
+                    'baranggay' => $storeDocumentRequest->address_barangay,
+                ]
+            );
+
+            $fence = Fence::create(
+                $storeDocumentRequest->only('new', 'renovation', 'additional', 'change_of_material', 'repair') +
+                    [
+                        'others' => $storeDocumentRequest->fence_others ?? 0
+                    ]
+            );
+
+            $measure = MeasurementsInMeters::create($storeDocumentRequest->only('length', 'height', 'excess'));
+
+            $document = DocumentsRequirements::create($storeDocumentRequest
+                ->only(
+                    'certificate_true_copy_of_tct',
+                    'contract_of_leases_duly_notarized',
+                    'plans_and_design_of_fence_over',
+                    'tax_declaration_tax_receipt',
+                    'location_plan_and_vicinity_map',
+                    'other'
+                ));
+
+            $fencing = TypeOfFencing::create($storeDocumentRequest
+                ->only('indigenous', 'reinforced_concrete', 'concrete_hollow_blocks', 'blocks', 'interlink_or_cyclone_wire', 'steel_matting', 'barbed_wire_and_others', 'others'));
+
+            FencingPermit::create(
+                $storeDocumentRequest->validated() +
+                    [
+                        'user_id' => $requestDocument->user_id,
+                        'request_document_id' => $requestDocument->id,
+                        'location_id' => $location->id,
+                        'address_id' => $address->id,
+                        'fence_id' => $fence->id,
+                        'measurements_in_meters_id' => $measure->id,
+                        'documents_requirements_id' => $document->id,
+                        'type_of_fencing_id' => $fencing->id,
+                    ]
+            );
         }
 
 

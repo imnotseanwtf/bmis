@@ -1,6 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container-fluid">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -75,6 +90,9 @@
                 } else if (selectedValue === 'Barangay Medic Legal Certificate') {
                     $('#brgy-document').load(
                         '{{ route('document.modals-form.brgy-medic') }}')
+                } else if (selectedValue === 'Baranggay Fencing Permit') {
+                    $('#brgy-document').load(
+                        '{{ route('document.modals-form.brgy-fencing') }}')
                 } else {
                     // Clear the container content if a different value is selected
                     $('#brgy-document').empty();

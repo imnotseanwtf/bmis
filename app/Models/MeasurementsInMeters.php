@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class MeasurementsInMeters extends Model
 {
     use HasFactory;
+
+    protected $fillable =
+    [
+        'length',
+        'height',
+        'excess'
+    ];
 }

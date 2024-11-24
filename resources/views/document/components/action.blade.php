@@ -8,10 +8,6 @@
             'certificate-of-indigency',
             $document->id,
         ),
-        DocumentTypeEnum::Barangay_Certificate_of_Residency->value => route(
-            'certificate-of-residency',
-            $document->id,
-        ),
         DocumentTypeEnum::Barangay_Blotter_Complaint_Report->value => route('complaint', $document->id),
         DocumentTypeEnum::Barangay_Permit_to_Construct->value => route(
             'request-for-building-construction',

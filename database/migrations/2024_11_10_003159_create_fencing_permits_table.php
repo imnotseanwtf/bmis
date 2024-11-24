@@ -31,16 +31,16 @@ return new class extends Migration
             $table->foreignIdFor(MeasurementsInMeters::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(TypeOfFencing::class)->constrained()->cascadeOnDelete();
 
-            $table->integer('application_no');
-            $table->integer('permit_no');
+            $table->string('application_no');
+            $table->string('permit_no');
             $table->string('last_name');
             $table->string('first_name');
             $table->string('middle_initial')->nullable();
-            $table->integer('tax_account_no');
+            $table->string('tax_account_no');
             $table->string('construction_owned_by_an_enterprise');
             $table->string('form_of_ownership');
             $table->string('telephone');
-            $table->string('local_building_office');
+            $table->string('local_building_office')->nullable();
 
             $table->timestamps();
         });

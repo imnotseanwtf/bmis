@@ -70,6 +70,10 @@ Route::middleware(['auth', 'verified', 'check_user_status'])->group(function () 
         Route::get('document/modals-form/brgy-medic', function () {
             return view('document.modals-form.medic');
         })->name('document.modals-form.brgy-medic');
+
+        Route::get('document/modals-form/brgy-fencing', function () {
+            return view('document.modals-form.fencing');
+        })->name('document.modals-form.brgy-fencing');
     });
 
 

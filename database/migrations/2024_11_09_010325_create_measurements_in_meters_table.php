@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('measurements_in_meters', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('length')->nullable();
-            $table->integer('height')->nullable();
-            $table->integer('excess')->nullable();
+            $table->string('length')->nullable();
+            $table->string('height')->nullable();
+            $table->string('excess')->nullable();
 
             $table->timestamps();
         });

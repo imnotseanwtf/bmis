@@ -14,6 +14,13 @@ class ProfileUpdateRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user())],
             'password' => ['nullable', 'string', 'confirmed', 'min:8'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'middle_name' => ['nullable', 'string', 'max:255'],
+            'birthdate' => ['nullable', 'date', 'before_or_equal:today'],
+            'gender' => ['required', 'in:Male,Female'],
+            'number_of_years' => ['nullable', 'integer', 'min:0'],
+            'contact_number' => ['required', 'string', 'max:15', 'regex:/^[0-9+\-()\s]*$/'],
+            'id_pic' => ['nullable', 'file', 'mimes:pdf,docx', 'max:2048'],  // 2MB file size limit
         ];
     }
 

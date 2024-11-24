@@ -56,6 +56,53 @@ class StoreDocumentRequest extends FormRequest
             'start' => ['nullable', 'integer', 'min:1'],
             'end' => ['nullable', 'integer', 'min:1'],
 
+            // FENCING
+            'application_no' => ['required', 'numeric'],
+            'permit_no' => ['required', 'numeric'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'middle_initial' => ['nullable', 'string', 'max:1'],
+            'tax_account_no' => ['required', 'string', 'max:255'],
+            'construction_owned_by_an_enterprise' => ['nullable', 'string', 'max:255'],
+            'form_of_ownership' => ['required', 'string', 'max:255'],
+            'telephone' => ['required', 'string', 'max:20'],
+            'number' => ['required', 'numeric'],
+            'street' => ['required', 'string', 'max:255'],
+            'barangay' => ['required', 'string', 'max:255'],
+            'address_number' => ['required', 'numeric'],
+            'address_street' => ['required', 'string', 'max:255'],
+            'address_barangay' => ['required', 'string', 'max:255'],
+
+            // FENCE
+            'new' => ['nullable', 'boolean'],
+            'renovation' => ['nullable', 'boolean'],
+            'additional' => ['nullable', 'boolean'],
+            'change_of_material' => ['nullable', 'boolean'],
+            'repair' => ['nullable', 'boolean'],
+            'fence_others' => ['nullable', 'boolean'],
+
+            // DOCUMENTS
+            'certificate_true_copy_of_tct' => ['boolean'],
+            'contract_of_leases_duly_notarized' => ['boolean'],
+            'plans_and_design_of_fence_over' => ['boolean'],
+            'tax_declaration_tax_receipt' => ['boolean'],
+            'location_plan_and_vicinity_map' => ['boolean'],
+            'other' => ['nullable', 'string', 'max:255'],
+
+            // MEASUREMENT IN METERS
+            'length' => ['nullable', 'string'],
+            'height' => ['nullable', 'string'],
+            'excess' => ['nullable', 'string'],
+
+            // TYPE OF FENCING
+            'indigenous' => ['boolean'],
+            'reinforced_concrete' => ['boolean'],
+            'concrete_hollow_blocks' => ['boolean'],
+            'blocks' => ['boolean'],
+            'interlink_or_cyclone_wire' => ['boolean'],
+            'steel_matting' => ['boolean'],
+            'barbed_wire_and_others' => ['boolean'],
+            'others' => ['nullable', 'string', 'max:255'],
         ];
     }
 }

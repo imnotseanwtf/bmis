@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('fences', function (Blueprint $table) {
             $table->id();
 
-            $table->boolean('new');
-            $table->boolean('renovation');
-            $table->boolean('additional');
-            $table->boolean('change_of_material');
-            $table->boolean('repair');
-            $table->boolean('others');
+            $table->boolean('new')->default(0);
+            $table->boolean('renovation')->default(0);
+            $table->boolean('additional')->default(0);
+            $table->boolean('change_of_material')->default(0);
+            $table->boolean('repair')->default(0);
+            $table->boolean('others')->default(0);
 
             $table->timestamps();
         });

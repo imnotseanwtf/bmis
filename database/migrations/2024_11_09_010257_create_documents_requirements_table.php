@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('documents_requirements', function (Blueprint $table) {
             $table->id();
 
-            $table->boolean('certificate_true_copy_of_tct');
-            $table->boolean('contract_of_leases_duly_notarized');
-            $table->boolean('plans_and_design_of_fence_over');
-            $table->boolean('tax_declaration_tax_receipt');
-            $table->boolean('location_plan_and_vicinity_map');
+            $table->boolean('certificate_true_copy_of_tct')->default(0);
+            $table->boolean('contract_of_leases_duly_notarized')->default(0);
+            $table->boolean('plans_and_design_of_fence_over')->default(0);
+            $table->boolean('tax_declaration_tax_receipt')->default(0);
+            $table->boolean('location_plan_and_vicinity_map')->default(0);
             $table->string('other')->nullable();
 
             $table->timestamps();

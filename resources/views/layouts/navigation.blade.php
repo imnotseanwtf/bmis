@@ -1,6 +1,6 @@
 <style>
     .nav-item.is-active .nav-link {
-        background-color: red;
+        background-color: #A11;
         /* Change to your desired color */
         color: white;
         /* Adjust text color if needed */
@@ -122,7 +122,7 @@
             </a>
         </li>
 
-        <li class="nav-item {{ request()->routeIs('about') ? 'is-active' : '' }}">
+        {{-- <li class="nav-item {{ request()->routeIs('about') ? 'is-active' : '' }}">
             <a href="{{ route('about') }}" class="nav-link">
                 <span class="sidebar-icon">
                     <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -133,7 +133,7 @@
                 </span>
                 <span class="sidebar-text">{{ __('Services') }}</span>
             </a>
-        </li>
+        </li> --}}
     @endresident
 
 

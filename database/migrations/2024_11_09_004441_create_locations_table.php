@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->integer('number');
             $table->string('street');
-            $table->string('baranggay');
+            $table->string('barangay');
 
             $table->timestamps();
         });
