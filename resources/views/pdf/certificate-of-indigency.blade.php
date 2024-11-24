@@ -134,9 +134,9 @@
 
             <div class="footer" style="margin-left:20px;">
                 <p style="text-align: left;">
-                    Given this <u>{{ \Carbon\Carbon::parse($clearance->created_at)->format('d') }}</u> day of
-                    <u>{{ \Carbon\Carbon::parse($clearance->created_at)->format('F') }}</u>,
-                    <u>{{ \Carbon\Carbon::parse($clearance->created_at)->format('Y') }}</u> at the office of Barangay
+                    Given this <u>{{ \Carbon\Carbon::parse($certificate->created_at)->format('d') }}</u> day of
+                    <u>{{ \Carbon\Carbon::parse($certificate->created_at)->format('F') }}</u>,
+                    <u>{{ \Carbon\Carbon::parse($certificate->created_at)->format('Y') }}</u> at the office of Barangay
                     Chairman
                     of Barangay Kay-Anlog, Calamba City, Province of Laguna.
                 </p>
