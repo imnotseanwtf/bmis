@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $requestDocuments = RequestDocument::all();
+        $requestDocuments = RequestDocument::all()->where('user_id', auth()->id());
 
         foreach ($requestDocuments as $document) {
             // Check if is_announce is 1
