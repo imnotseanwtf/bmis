@@ -55,41 +55,38 @@
                                 $('#view_barangay').val(firstHouse.barangay);
                                 $('#view_municipality').val(firstHouse.municipality);
                                 $('#view_province').val(firstHouse.province);
+
+                                const mapUrl = 'https://maps.google.com/maps?q=' +
+                                    encodeURIComponent(
+                                        `${firstHouse.address}, ${firstHouse.barangay}, ${firstHouse.municipality}, ${firstHouse.province}`
+                                    ) +
+                                    '&output=embed';
+
+                                // Set the map URL
+                                $('#map').attr('src', mapUrl);
                             }
 
                             function setLinkOrMessage(fileKey, linkId, inputId) {
                                 const fileName = resident[
-                                fileKey]; // Get the file name from the resident object
+                                    fileKey]; // Get the file name from the resident object
                                 if (fileName) {
                                     const fileUrl = '/storage/' +
-                                    fileName; // Construct the file URL
+                                        fileName; // Construct the file URL
                                     $(`#${linkId}`).attr('href', fileUrl)
-                                .show(); // Set the link's href and show it
+                                        .show(); // Set the link's href and show it
                                     $(`#${inputId}`).val(fileName)
-                                .show(); // Display the file name in the input field
+                                        .show(); // Display the file name in the input field
                                 } else {
                                     $(`#${linkId}`).hide(); // Hide the link if no file is found
                                     $(`#${inputId}`).val('No file')
-                                .show(); // Show "No file" in the input field
+                                        .show(); // Show "No file" in the input field
                                 }
                             }
 
 
                             setLinkOrMessage('id_pic', 'link_id_pic', 'view_id_pic');
 
-                            const mapUrl = 'https://maps.google.com/maps?q=' +
-                                encodeURIComponent(resident.address + ' ' +
-                                    resident.barangay + ' ' +
-                                    resident.municipality + ' ' +
-                                    resident.province) +
-                                '&output=embed';
-
-                            $('#map').attr('src', mapUrl);
-
-
-
                             console.log(mapUrl);
-
 
                         })
                         .catch(error => console.error('Error fetching resident data:', error));
