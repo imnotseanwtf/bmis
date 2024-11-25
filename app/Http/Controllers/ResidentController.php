@@ -31,9 +31,19 @@ class ResidentController extends Controller
         return response()->json($resident);
     }
 
-    public function destroy(User $user): RedirectResponse
+    public function destroy(User $resident)
     {
-        $user->delete();
+        // Delete the first associated House, if it exists
+        $house = $resident->houses()->first(); // Adjust the relationship name if necessary
+        if ($house) {
+            $house->delete();
+        }
+
+        // Delete the user
+        $resident->delete();
+
+        // Flash success message
+        flash()->success('Resident deleted successfully!');
 
         return redirect()->route('resident.index');
     }

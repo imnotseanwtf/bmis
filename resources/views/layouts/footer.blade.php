@@ -66,7 +66,7 @@
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <!-- Content -->
                     <h6 class="text-uppercase fw-bold mb-4">
-                        Baranggay Kay-Anlog
+                        Barangay Kay-Anlog
                     </h6>
                 </div>
 
@@ -86,7 +86,7 @@
     <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
         © 2021 Copyright:
-        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Baranggay Kay-Anlog Management Information
+        <a class="text-reset fw-bold" href="https://mdbootstrap.com/">Barangay Kay-Anlog Management Information
             System</a>
     </div>
     <!-- Copyright -->

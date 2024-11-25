@@ -21,6 +21,8 @@
 
     {{-- REJECT RESIDENT --}}
     @include('resident.modals.reject')
+
+    @include('resident.modals.delete')
 @endsection
 
 @push('scripts')
@@ -105,6 +107,7 @@
                 });
 
                 $('.deleteBtn').click(function() {
+                    console.log($(this).data('resident'));
                     $('#delete-form').attr('action', '/resident/' + $(this).data('resident'));
                 });
             })
