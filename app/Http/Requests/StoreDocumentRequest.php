@@ -35,7 +35,7 @@ class StoreDocumentRequest extends FormRequest
             'permit_number' => ['nullable', 'string', 'max:255', 'unique:business_permits,permit_number'],
             'address' => ['nullable', 'string', 'max:500'],
             'business_location' => ['nullable', 'string', 'max:255'],
-            'status' => ['nullable', 'in:active,inactive'],
+            'status' => ['nullable',],
 
             // CERTIFICATE OF INDIGENCY
             'subject' => ['nullable', 'string'],
@@ -44,6 +44,7 @@ class StoreDocumentRequest extends FormRequest
             'complainant' => ['nullable', 'string', 'max:255'],
             'against' => ['nullable', 'string', 'max:255'],
             'respondents' => ['nullable', 'string', 'max:255'],
+            'violate' => ['nullable', 'string'],
 
             // MEDIC
             'medical_facility' => ['nullable', 'string', 'max:255'],

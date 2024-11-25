@@ -86,77 +86,78 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Additional Fields -->
-                        <div class="row align-items-center">
-                            <div class="col-md-4 mb-3">
-                                <label for="last_name">{{ __('Last Name') }}</label>
-                                <input id="last_name" class="form-control" type="text" name="last_name"
-                                    placeholder="{{ __('Last Name') }}"
-                                    value="{{ old('last_name', auth()->user()->last_name) }}" required>
-                                @error('last_name')
-                                    <div class="invalid-feedback"> {{ $message }} </div>
-                                @enderror
+                        @resident
+                            <!-- Additional Fields -->
+                            <div class="row align-items-center">
+                                <div class="col-md-4 mb-3">
+                                    <label for="last_name">{{ __('Last Name') }}</label>
+                                    <input id="last_name" class="form-control" type="text" name="last_name"
+                                        placeholder="{{ __('Last Name') }}"
+                                        value="{{ old('last_name', auth()->user()->last_name) }}" required>
+                                    @error('last_name')
+                                        <div class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="middle_name">{{ __('Middle Name') }}</label>
+                                    <input id="middle_name" class="form-control" type="text" name="middle_name"
+                                        placeholder="{{ __('Middle Name') }}"
+                                        value="{{ old('middle_name', auth()->user()->middle_name) }}">
+                                    @error('middle_name')
+                                        <div class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="birthdate">{{ __('Birthdate') }}</label>
+                                    <input id="birthdate" class="form-control" type="date" name="birthdate"
+                                        value="{{ old('birthdate', auth()->user()->birthdate) }}">
+                                    @error('birthdate')
+                                        <div class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="gender">{{ __('Gender') }}</label>
+                                    <select id="gender" name="gender" class="form-control">
+                                        <option value="Male"
+                                            {{ old('gender', auth()->user()->gender) == 'Male' ? 'selected' : '' }}>
+                                            {{ __('Male') }}
+                                        </option>
+                                        <option value="Female"
+                                            {{ old('gender', auth()->user()->gender) == 'Female' ? 'selected' : '' }}>
+                                            {{ __('Female') }}
+                                        </option>
+                                    </select>
+                                    @error('gender')
+                                        <div class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="number_of_years">{{ __('Number of Years') }}</label>
+                                    <input id="number_of_years" class="form-control" type="number" name="number_of_years"
+                                        placeholder="{{ __('Number of Years') }}"
+                                        value="{{ old('number_of_years', auth()->user()->number_of_years) }}">
+                                    @error('number_of_years')
+                                        <div class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="contact_number">{{ __('Contact Number') }}</label>
+                                    <input id="contact_number" class="form-control" type="text" name="contact_number"
+                                        placeholder="{{ __('Contact Number') }}"
+                                        value="{{ old('contact_number', auth()->user()->contact_number) }}" required>
+                                    @error('contact_number')
+                                        <div class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="id_pic">{{ __('ID Picture') }}</label>
+                                    <input id="id_pic" class="form-control" type="file" name="id_pic">
+                                    @error('id_pic')
+                                        <div class="invalid-feedback"> {{ $message }} </div>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="middle_name">{{ __('Middle Name') }}</label>
-                                <input id="middle_name" class="form-control" type="text" name="middle_name"
-                                    placeholder="{{ __('Middle Name') }}"
-                                    value="{{ old('middle_name', auth()->user()->middle_name) }}">
-                                @error('middle_name')
-                                    <div class="invalid-feedback"> {{ $message }} </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="birthdate">{{ __('Birthdate') }}</label>
-                                <input id="birthdate" class="form-control" type="date" name="birthdate"
-                                    value="{{ old('birthdate', auth()->user()->birthdate) }}">
-                                @error('birthdate')
-                                    <div class="invalid-feedback"> {{ $message }} </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="gender">{{ __('Gender') }}</label>
-                                <select id="gender" name="gender" class="form-control">
-                                    <option value="Male"
-                                        {{ old('gender', auth()->user()->gender) == 'Male' ? 'selected' : '' }}>
-                                        {{ __('Male') }}
-                                    </option>
-                                    <option value="Female"
-                                        {{ old('gender', auth()->user()->gender) == 'Female' ? 'selected' : '' }}>
-                                        {{ __('Female') }}
-                                    </option>
-                                </select>
-                                @error('gender')
-                                    <div class="invalid-feedback"> {{ $message }} </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="number_of_years">{{ __('Number of Years') }}</label>
-                                <input id="number_of_years" class="form-control" type="number" name="number_of_years"
-                                    placeholder="{{ __('Number of Years') }}"
-                                    value="{{ old('number_of_years', auth()->user()->number_of_years) }}">
-                                @error('number_of_years')
-                                    <div class="invalid-feedback"> {{ $message }} </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="contact_number">{{ __('Contact Number') }}</label>
-                                <input id="contact_number" class="form-control" type="text" name="contact_number"
-                                    placeholder="{{ __('Contact Number') }}"
-                                    value="{{ old('contact_number', auth()->user()->contact_number) }}" required>
-                                @error('contact_number')
-                                    <div class="invalid-feedback"> {{ $message }} </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="id_pic">{{ __('ID Picture') }}</label>
-                                <input id="id_pic" class="form-control" type="file" name="id_pic">
-                                @error('id_pic')
-                                    <div class="invalid-feedback"> {{ $message }} </div>
-                                @enderror
-                            </div>
-                        </div>
+                        @endresident
 
                         <div class="mt-3">
                             <button type="submit"

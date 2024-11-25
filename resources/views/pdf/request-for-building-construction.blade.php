@@ -116,7 +116,7 @@
             </div>
             <div style="text-align: right; margin-right:20px;">
                 <p>Owner: <u>
-                        {{ $permit->user->first_name . ' ' . $permit->user->middle_name . ' ' . $permit->user->last_name }}
+                        {{ $permit->user->name . ' ' . $permit->user->middle_name . ' ' . $permit->user->last_name }}
                     </u></p>
             </div> <br> <br>
 

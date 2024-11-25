@@ -17,7 +17,8 @@ class Complaint extends Model
         'case_no',
         'subject',
         'user_id',
-        'request_document_id'
+        'request_document_id',
+        'violate'
     ];
 
     public function user(): BelongsTo

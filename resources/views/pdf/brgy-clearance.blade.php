@@ -145,7 +145,7 @@
                         @endphp
                         <p style="text-indent: 30px;">
                             This is to certify that <u>
-                                {{ $clearance->user->first_name . ' ' . $clearance->user->middle_name . ' ' . $clearance->user->last_name }}
+                                {{ $clearance->user->name . ' ' . $clearance->user->middle_name . ' ' . $clearance->user->last_name }}
                             </u> years of age,
                             born on <u>{{ $birthDate }}</u>, year <u>{{ $birthYear }}</u> is a
                             <u>{{ $clearance->is_certified }}</u>

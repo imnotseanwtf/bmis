@@ -19,6 +19,7 @@ use App\Http\Controllers\ResidentAction\AcceptResidentController;
 use App\Http\Controllers\ResidentAction\RejectResidentController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\UserFeedBackController;
+use App\Http\Controllers\UserIndexFeedbackController;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
@@ -78,6 +79,8 @@ Route::middleware(['auth', 'verified', 'check_user_status'])->group(function () 
 
 
     Route::middleware('role:admin')->group(function () {
+
+        Route::get('user-feedback', UserIndexFeedbackController::class)->name('feedback');
 
         // PDF
         Route::get('brgy-certificate/{id}', BaranggayCertificateController::class)->name('brgy-certificate');

@@ -60,9 +60,6 @@ class ResidentDataTable extends DataTable
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([
-                Button::make('excel'),
-                Button::make('csv'),
-                Button::make('print'),
                 Button::make('reset'),
                 Button::make('reload')
             ]);

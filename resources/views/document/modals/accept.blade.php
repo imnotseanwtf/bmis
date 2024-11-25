@@ -15,14 +15,15 @@
                 @method('PUT')
                 <div class="modal-body">
 
-                    <div class="form-group"> 
+                    <div class="form-group">
                         <label for="schedule">Schedule</label>
                         <input type="date" class="form-control" name="schedule" placeholder="Enter Date"
-                            value="{{ old('schedule') }}" required>
+                            min="{{ now()->toDateString() }}" required>
                         @error('schedule')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

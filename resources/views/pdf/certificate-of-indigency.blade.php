@@ -115,7 +115,7 @@
 
                 <p style="margin-left:20px;">
                     This is to certify that <u>
-                        {{ $certificate->user->first_name . ' ' . $certificate->user->middle_name . ' ' . $certificate->user->last_name }}
+                        {{ $certificate->user->name . ' ' . $certificate->user->middle_name . ' ' . $certificate->user->last_name }}
                     </u>
                     A resident of Purok <u>{{ $purokNumber }}</u> of Barangay Kay-Anlog, <br> Calamba City, Province of
                     Laguna, has no

@@ -25,7 +25,7 @@
     $documentUrl = $documentUrls[$document->document_name];
 @endphp
 
-@if ($document->status === null)
+@if ($document->status === 0)
     <button class="btn btn-success acceptBtn" data-bs-toggle="modal" data-bs-target="#acceptModal"
         data-document="{{ $document->id }}">
         <i class="fa-solid fa-check"></i>

@@ -111,7 +111,7 @@
 
                     <p>
                         This is to certify that <u>
-                            {{ $medic->user->first_name . ' ' . $medic->user->middle_name . ' ' . $medic->user->last_name }}
+                            {{ $medic->user->name . ' ' . $medic->user->middle_name . ' ' . $medic->user->last_name }}
                         </u> ( {{ $medic->user->gender }} )
                         <u> {{ Carbon\Carbon::parse($medic->user->birthdate)->age }}</u>
                         years old,

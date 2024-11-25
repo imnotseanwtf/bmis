@@ -16,7 +16,7 @@ class RejectRequestDocumentController extends Controller
     {
         $requestDocument->update(
             [
-                'status' => false,
+                'status' => 2,
                 'is_announce' => 3
              ]
         );

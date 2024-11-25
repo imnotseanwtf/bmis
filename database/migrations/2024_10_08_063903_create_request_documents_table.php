@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('document_name');
-            $table->integer('status')->nullable();
+            $table->integer('status')->default(0);
             $table->date('schedule')->nullable();
             $table->date('valid_until')->nullable();
             $table->integer('is_announce')->nullable();

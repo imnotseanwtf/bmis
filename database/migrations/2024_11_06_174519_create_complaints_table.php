@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('complainant');
             $table->string('against');
             $table->string('respondents');
-            $table->integer('case_no');
+            $table->text('violate');
+            $table->integer('case_no')->nullable();
 
             $table->timestamps();
         });

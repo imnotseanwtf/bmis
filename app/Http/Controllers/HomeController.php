@@ -33,12 +33,12 @@ class HomeController extends Controller
         foreach ($requestDocuments as $document) {
             // Check if is_announce is 1
             if ($document->is_announce == 1) {
-                flash()->success('Document ' . $document->document_name . ' successfully.');
+                flash()->success('Document ' . $document->document_name . ' is Accepted, the document valid until ' . $document->valid_until);
                 $document->is_announce = 2;
             }
             // Check if is_announce is 0
             elseif ($document->is_announce == 3) {
-                flash()->error('Document' . $document->document_name . ' is Rejected.');
+                flash()->flash('error', 'Document ' . $document->document_name . ' is Rejected.', [], 'Rejected');
                 $document->is_announce = 5;
             }
             // Check if is_announce is 2
@@ -48,8 +48,9 @@ class HomeController extends Controller
 
             // Check if status is 2 and valid_until date is beyond current date
             if ($document->status == 2 && Carbon::parse($document->valid_until)->isPast()) {
-                flash()->error('Document' . $document->document_name . 'validity has expired.');
+                flash()->flash('error', 'Document ' . $document->document_name . ' validity has expired.', [], 'Expired');
                 $document->is_announce = 5;
+                $document->status = 4;
             }
 
             $document->save();
@@ -66,14 +67,14 @@ class HomeController extends Controller
         $pendingResidentCount = User::role($role)->where('status', null)->count();
 
         $maleCount = User::role($role)
-        ->where('status', true)
-        ->where('gender', 'male')->count();
+            ->where('status', true)
+            ->where('gender', 'male')->count();
         $femaleCount = User::role($role)
-        ->where('status', true)
-        ->where('gender', 'female')->count();
+            ->where('status', true)
+            ->where('gender', 'female')->count();
         $otherGenderCount = User::role($role)
-        ->where('status', true)
-        ->where('gender', 'others')->count();
+            ->where('status', true)
+            ->where('gender', 'others')->count();
 
         $pendingDocument = RequestDocument::where('status', null)->count();
         $blotterRecordCount = BlotterRecord::count();

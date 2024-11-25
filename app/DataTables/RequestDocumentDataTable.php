@@ -26,9 +26,9 @@ class RequestDocumentDataTable extends DataTable
             ->setRowId('id')
             ->addColumn('action', fn(RequestDocument $document) => view('document.components.action', compact('document')))
             ->editColumn('status', function (RequestDocument $requestDocument) {
-                if (is_null($requestDocument->status)) {
+                if ($requestDocument->status == 0) {
                     return 'Pending';
-                } elseif ($requestDocument->status == 0) {
+                } elseif ($requestDocument->status == 2) {
                     return 'Rejected';
                 } elseif ($requestDocument->status == 1) {
                     return 'Accepted';
@@ -48,6 +48,8 @@ class RequestDocumentDataTable extends DataTable
     {
         if (auth()->user()->isAdmin()) {
             return $model->newQuery()
+                ->where('status', '!=', 2)
+                ->where('status', '!=', 3)
                 ->with('user')
                 ->select('request_documents.*');
         } else {
@@ -69,9 +71,6 @@ class RequestDocumentDataTable extends DataTable
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([
-                Button::make('excel'),
-                Button::make('csv'),
-                Button::make('print'),
                 Button::make('reset'),
                 Button::make('reload')
             ]);
