@@ -26,6 +26,8 @@ class ResidentController extends Controller
      */
     public function show(User $resident): JsonResponse | View
     {
+        $resident->load('houses');
+
         return response()->json($resident);
     }
 }
