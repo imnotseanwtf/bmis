@@ -24,6 +24,7 @@ class HouseDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
+            ->addColumn('user.name', fn(House $house) => $house->user->name . ' ' . $house->user->middle_name . ' ' . $house->user->last_name)
             ->addColumn('action', fn(House $house) => view('house.components.action', compact('house')))
             ->rawColumns(['action']);
     }
@@ -65,6 +66,7 @@ class HouseDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('user.name'),
             Column::make('address'),
             Column::make('barangay'),
             Column::make('municipality'),

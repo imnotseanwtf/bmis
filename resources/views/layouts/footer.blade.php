@@ -49,7 +49,7 @@
 
         <!-- Right -->
         <div>
-            <a href="" class="me-4 text-reset">
+            <a href="https://www.facebook.com/share/14rXED6kkh/?mibextid=kFxxJD" class="me-4 text-reset">
                 <i class="fab fa-facebook-f"></i>
             </a>
         </div>
@@ -68,10 +68,6 @@
                     <h6 class="text-uppercase fw-bold mb-4">
                         Baranggay Kay-Anlog
                     </h6>
-                    <p>
-                        Here you can use rows and columns to organize your footer content. Lorem ipsum
-                        dolor sit amet, consectetur adipisicing elit.
-                    </p>
                 </div>
 
                 <!-- Grid column -->
@@ -79,12 +75,6 @@
                     <!-- Links -->
                     <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
                     <p><i class="fas fa-home me-3"></i> Brgy. Kay-Anlog Calamba Laguna</p>
-                    <p>
-                        <i class="fas fa-envelope me-3"></i>
-                        info@example.com
-                    </p>
-                    <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                    <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
                 </div>
                 <!-- Grid column -->
             </div>
