@@ -5,7 +5,7 @@
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
         <div class="d-flex">
             <img src="{{ asset('images/logo/kayanlog.png') }}" alt="" style="height: 250px" class="me-5">
-            <h1 class="text-center mt-4">Welcome To Kay-Anlog <br> Baranggay Management Information System</h1>
+            <h1 class="text-center mt-4">Welcome To Kay-Anlog <br> Barangay Management Information System</h1>
         </div>
     </div>
 
@@ -26,14 +26,7 @@
                         <td>Population</td>
                         <td>26,000</td>
                     </tr>
-                    <tr>
-                        <td>Ongoing Projects</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>Upcoming Events</td>
-                        <td>4</td>
-                    </tr>
+                 
                 </tbody>
             </table>
         </div>

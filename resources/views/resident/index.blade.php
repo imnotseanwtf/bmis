@@ -58,9 +58,13 @@
 
                                 const mapUrl = 'https://maps.google.com/maps?q=' +
                                     encodeURIComponent(
-                                        `${firstHouse.address}, ${firstHouse.barangay}, ${firstHouse.municipality}, ${firstHouse.province}`
+                                        firstHouse.address + ' ' +
+                                        firstHouse.barangay + ' ' +
+                                        firstHouse.municipality + ' ' +
+                                        firstHouse.province
                                     ) +
                                     '&output=embed';
+
 
                                 // Set the map URL
                                 $('#map').attr('src', mapUrl);
@@ -92,14 +96,17 @@
                         .catch(error => console.error('Error fetching resident data:', error));
                 });
 
-
                 $('.acceptBtn').click(function() {
                     $('#accept-form').attr('action', '/accept/' + $(this).data('resident'));
                 })
 
                 $('.rejectBtn').click(function() {
-                    $('#reject-form').attr('action', '/reject/' + $(this).data('resident'));
-                })
+                    $('#reject-form').attr('action', '/resident/' + $(this).data('resident'));
+                });
+
+                $('.deleteBtn').click(function() {
+                    $('#delete-form').attr('action', '/resident/' + $(this).data('resident'));
+                });
             })
         });
     </script>

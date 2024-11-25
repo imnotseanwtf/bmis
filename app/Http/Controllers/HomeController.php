@@ -43,7 +43,7 @@ class HomeController extends Controller
             }
             // Check if is_announce is 2
             elseif ($document->is_announce == 2) {
-                flash()->warning('Document ' . $document->document_name . ' valid until ' . $document->valid_until);
+                flash()->flash('warning' ,'Document ' . $document->document_name . ' valid until ' . $document->valid_until, [], 'Notice');
             }
 
             // Check if status is 2 and valid_until date is beyond current date

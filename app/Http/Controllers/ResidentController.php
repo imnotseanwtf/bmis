@@ -30,4 +30,11 @@ class ResidentController extends Controller
 
         return response()->json($resident);
     }
+
+    public function destroy(User $user): RedirectResponse
+    {
+        $user->delete();
+
+        return redirect()->route('resident.index');
+    }
 }
